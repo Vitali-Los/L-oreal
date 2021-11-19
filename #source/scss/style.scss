@@ -1,0 +1,843 @@
+//<МИКСИНЫ>===============================================================================================
+@mixin anim($time, $delay) {
+	-webkit-transition: all $time ease $delay;
+	-moz-transition: all $time ease $delay;
+	-ms-transition: all $time ease $delay;
+	-o-transition: all $time ease $delay;
+	transition: all $time ease $delay;
+}
+
+@mixin scale($num) {
+	-moz-transform: scale($num);
+	-ms-transform: scale($num);
+	-webkit-transform: scale($num);
+	-o-transform: scale($num);
+	transform: scale($num);
+}
+
+@mixin flexbox() {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	font-size: 0;
+}
+@mixin flexorder($val) {
+	-webkit-box-ordinal-group: $val;
+	-moz-box-ordinal-group: $val;
+	-ms-flex-order: $val;
+	-webkit-order: $val;
+	order: $val;
+}
+
+@mixin flexboxinline() {
+	display: -webkit-inline-flex;
+	display: -moz-inline-flex;
+	display: -ms-inline-flex;
+	display: -o-inline-flex;
+	display: inline-flex;
+}
+//</МИКСИНЫ>===============================================================================================
+
+//<ШРИФТЫ>===============================================================================================
+
+//<Подключаем шрифты>=======================================================================================
+
+//</Подключаем шрифты>=======================================================================================
+
+//<Шрифт по умолчанию>==========================================================================================
+$fontfamily: "";
+//</Шрифт по умолчанию>==========================================================================================
+
+//</ШРИФТЫ>==============================================================================================================
+
+//<ПЕРЕМЕННЫЕ>===========================================================================================================
+$minwidth: 320px;
+$mw: 1170;
+$md1: $mw + 12;
+$md2: 992.98;
+$md3: 767.98;
+$md4: 479.98;
+//</ПЕРЕМЕННЫЕ>==============================================================================================================
+
+//<ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+* {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+*,
+*:before,
+*:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+:focus,
+:active {
+	outline: none;
+}
+a:focus,
+a:active {
+	outline: none;
+}
+aside,
+nav,
+footer,
+header,
+section {
+	display: block;
+}
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	min-width: $minwidth;
+	position: relative;
+	width: 100%;
+	color: #000;
+}
+body {
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	font-family: $fontfamily;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	&.lock {
+		overflow: hidden;
+		@media (max-width: $md3+px) {
+			width: 100%;
+			position: fixed;
+			overflow: hidden;
+		}
+	}
+}
+input,
+button,
+textarea {
+	font-family: $fontfamily;
+}
+input::-ms-clear {
+	display: none;
+}
+button {
+	cursor: pointer;
+}
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+a,
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+ul li {
+	list-style: none;
+}
+img {
+	vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: inherit;
+	font-size: inherit;
+}
+//</ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+
+//<ОБОЛОЧКА>===========================================================================================================
+.wrapper {
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	&.loaded {
+	}
+}
+//</ОБОЛОЧКА>===========================================================================================================
+@import "_baguetteBox";
+//<ОСНОВНАЯ СЕТКА>===========================================================================================================
+.container {
+	max-width: $mw + px;
+	margin: 0 auto;
+	width: 100%;
+	@media (max-width: $md1+px) {
+		max-width: 970px;
+	}
+	@media (max-width: $md2+px) {
+		max-width: 750px;
+	}
+	@media (max-width: $md3+px) {
+		max-width: none;
+		padding: 0 10px;
+	}
+}
+//</ОСНОВНАЯ СЕТКА>===========================================================================================================
+
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+
+//<ОСНОВНОЙ БЛОК>====================================================================================================
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background: #fff;
+	height: 100%;
+	line-height: 1;
+	font-size: 14px;
+	font-family: "Roboto", sans-serif;
+}
+
+.wrapper {
+	min-height: 100vh;
+}
+
+.image-slider {
+	width: 100%;
+	max-height: 100%;
+	position: relative;
+	background: #000;
+	@media (max-width: $md1+px) {
+	}
+	&__slide {
+		max-height: 100vh;
+		overflow: hidden;
+		@media (max-width: $md1+px) {
+			min-height: 0;
+		}
+	}
+	&__content {
+		@include flexbox();
+		height: 100%;
+		width: 100%;
+		text-align: center;
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		z-index: 2;
+	}
+
+	&__logo {
+		flex: 1 1 auto;
+		align-self: flex-end;
+		display: inline-block;
+		text-align: center;
+		margin: 70px -180px 0 0;
+		@media (max-width: $md3+px) {
+			display: none;
+		}
+		img {
+			display: inline-block;
+			width: 50%;
+		}
+	}
+
+	&__button {
+		margin: 0 0 50px 0;
+	}
+}
+
+.image-slider__wrapper {
+}
+.image-slider__slide {
+	position: relative;
+}
+
+.image-slider__image {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	text-align: center;
+}
+
+.image-slider__image img {
+	max-width: 100%;
+}
+
+/* Стрелки */
+
+/* Пагинация */
+.image-slider .swiper-pagination {
+}
+/* Буллеты */
+.image-slider .swiper-pagination-bullet {
+	line-height: 20px;
+	font-size: 30px;
+	background-color: rgb(0, 0, 0);
+}
+//===================================================================================================================
+
+.content {
+	position: relative;
+	z-index: 50;
+}
+
+.menu {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	background: rgb(253, 70, 70);
+	border-bottom: 1px solid #000;
+
+	&__list {
+		flex: 1 1 auto;
+		@include flexbox();
+		justify-content: left;
+		align-self: center;
+		a {
+			font-family: "Roboto", sans-serif;
+			font-style: italic;
+			font-weight: 700;
+			color: #000000;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			position: relative;
+			padding: 0px 0px 0px 10px;
+			cursor: pointer;
+		}
+	}
+
+	&__body {
+		display: flex;
+		justify-content: left;
+		align-items: center;
+		height: 57px;
+	}
+
+	&__img {
+		flex: 1 1 auto;
+		img {
+			width: 120px;
+			overflow: hidden;
+		}
+	}
+
+	&__item {
+		margin: 0px 23px 0px 23px;
+		opacity: 1;
+		font-weight: 700;
+		font-style: italic;
+		overflow: hidden;
+		font-family: "Antonio", sans-serif;
+		color: #fff;
+		font-size: 16px;
+		transition-duration: 1s;
+		&:after {
+			margin: 10px 0 0 0;
+			display: block;
+			position: absolute;
+			left: 5px;
+			width: 0;
+			height: 3px;
+			background-color: #000000;
+			content: "";
+			transition: width 0.3s ease-out;
+		}
+		&:hover {
+			&:after {
+				background-color: #000000;
+				width: 100%;
+			}
+		}
+	}
+}
+
+.about {
+	background: rgb(255, 226, 226);
+	overflow: hidden;
+	position: relative;
+	padding: 120px 0 145px 0;
+	@media (max-width: $md4+px) {
+		padding: 40px 0 50px 0;
+	}
+	&__header-block {
+		margin: 0px 0 120px 0;
+		&__subtitle {
+			font-size: 20px;
+		}
+	}
+	&__body {
+		text-align: center;
+		max-width: 900px;
+		margin: 0px auto;
+	}
+	&__row {
+		display: flex;
+		margin: 0px -15px;
+		@media (max-width: $md3+px) {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+	&__column {
+		flex: 0 1 33.333%;
+		margin: 0 30px 0 10px;
+		@media (max-width: $md2+px) {
+			margin: 0 15px 0 5px;
+		}
+		@media (max-width: $md3+px) {
+			margin: 0 0 80px;
+		}
+	}
+	&__item {
+		text-align: center;
+		max-width: 270px;
+		@media (max-width: $md3+px) {
+			max-width: none;
+		}
+	}
+	&__icon {
+		@include flexboxinline();
+		justify-content: center;
+		align-items: center;
+		border: 2px solid #000;
+		border-radius: 50%;
+		width: 92px;
+		height: 92px;
+		flex: 0 1 auto;
+		margin: 0 0 41px 0;
+		@media (max-width: $md4+px) {
+			margin: 0 0 20px 0;
+		}
+		&_l {
+			img {
+				position: relative;
+				left: 0px;
+			}
+		}
+	}
+	&__title {
+		font-size: 28px;
+		line-height: 1.2;
+		font-weight: 400;
+		letter-spacing: 0.16em;
+		color: #000000;
+		margin: 0 0 36px 0;
+		@media (max-width: $md2+px) {
+			font-size: 20px;
+		}
+		@media (max-width: $md4+px) {
+			margin: 0 0 20px 0;
+		}
+	}
+	&__text {
+		font-size: 22px;
+		line-height: 26px;
+		font-weight: 300;
+		color: #000;
+		@media (max-width: $md3+px) {
+			font-size: 20px;
+		}
+		@media (max-width: $md4+px) {
+			padding: 0 15px;
+		}
+	}
+	&__fon {
+		position: absolute;
+		text-align: center;
+		top: 0;
+		left: 0;
+		text-align: center;
+		z-index: -1;
+		img {
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+		@media (max-width: $md3+px) {
+			img {
+				display: none;
+			}
+		}
+		opacity: 0;
+		transition: all 1.8s ease 0s;
+		&._active {
+			opacity: 0.3;
+		}
+	}
+}
+
+._anim-show1 {
+	transform: translate(0px, 120%);
+	opacity: 0;
+	transition: all 1s ease 0s;
+}
+._anim-show1._active,
+._active ._anim-show1 {
+	opacity: 1;
+	transform: translate(0px, 0px);
+}
+._anim-show2 {
+	transform: translate(0px, 120%);
+	opacity: 0;
+	transition: all 2s ease 0s;
+}
+._anim-show2._active,
+._active ._anim-show2 {
+	opacity: 1;
+	transform: translate(0px, 0px);
+}
+._anim-show3 {
+	transform: translate(0px, 120%);
+	opacity: 0;
+	transition: all 3s ease 0s;
+}
+._anim-show3._active,
+._active ._anim-show3 {
+	opacity: 1;
+	transform: translate(0px, 0px);
+}
+//===================================================================================================================
+.portfolio {
+	background: rgb(82, 170, 187);
+	background: linear-gradient(
+		121deg,
+		rgba(82, 170, 187, 1) 4%,
+		rgba(226, 141, 160, 1) 37%,
+		rgba(66, 177, 212, 1) 66%,
+		rgba(226, 141, 160, 1) 96%
+	);
+	padding: 60px 0 60px 0;
+	&__header-block {
+		margin: 0px 0 150px 0;
+	}
+	&__filter {
+		margin: 0 0 80px 0;
+		@media (max-width: $md4+px) {
+			margin: 0 0 50px 0;
+		}
+	}
+	&__items {
+		@include flexbox();
+		margin: 0px -15px;
+		flex-wrap: wrap;
+		@media (max-width: $md4+px) {
+			flex: 0 1 auto;
+			flex-direction: column;
+		}
+	}
+	&__column {
+		flex: 0 1 50%;
+		padding: 0px 15px;
+		margin: 0px 0px 30px 0px;
+	}
+	&__item {
+		img {
+			max-width: 100%;
+		}
+	}
+	&__info {
+		height: 50px;
+		@include flexbox();
+		justify-content: space-evenly;
+		align-items: center;
+		background: #ffffff;
+		padding: 0 20px;
+	}
+	&__name {
+		font-size: 18px;
+		color: #000;
+	}
+	&__price {
+		font-size: 18px;
+		color: #000;
+	}
+	&__button {
+		font-weight: 500;
+		text-align: center;
+		display: inline-block;
+		height: 30px;
+		width: 80px;
+		padding: 0px 10px;
+		background-color: transparent;
+		line-height: 30px;
+		text-transform: uppercase;
+		font-size: 12px;
+		text-transform: uppercase;
+		letter-spacing: 0.67px;
+		position: relative;
+		cursor: pointer;
+		&:after {
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			@include scale(0);
+			@include anim(0.3s, 0s);
+		}
+		color: #000;
+		border: 1px solid #000;
+		&:after {
+			background-color: #000;
+		}
+		span {
+			@include anim(0.3s, 0s);
+			position: relative;
+			z-index: 1;
+		}
+		&:hover {
+			color: #fff;
+			&:after {
+				@include scale(1);
+			}
+		}
+		&.fw {
+			width: 100%;
+		}
+	}
+	&__footer {
+		text-align: center;
+	}
+	&__btn {
+		cursor: pointer;
+	}
+}
+
+.filter {
+	&__list {
+		@include flexbox();
+		justify-content: center;
+		align-items: center;
+		li {
+			margin: 0px 25px;
+			cursor: pointer;
+			@media (max-width: $md3+px) {
+				margin: 0px 0 0 30px;
+			}
+			@media (max-width: $md3+px) {
+				flex: 0 1 25%;
+			}
+		}
+		@media (max-width: $md4+px) {
+			line-height: 50px;
+			font-size: 40px;
+			flex-wrap: wrap;
+			height: 100%;
+			@include flexbox();
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+			margin: 0 0 0 -25px;
+		}
+	}
+	&__item {
+		color: #3c3c3c;
+		font-size: 15px;
+		text-transform: uppercase;
+		font-weight: 700;
+		@include anim(0.3s, 0s);
+		&:hover {
+			color: #ffffff;
+		}
+		&.active {
+			color: #ffffff;
+		}
+	}
+}
+
+//===================================================================================================================
+
+//===================================================================================================================
+
+.contacts {
+	background: rgb(255, 226, 226);
+	padding: 40px 0 100px 0;
+	@media (max-width: $md3+px) {
+		padding: 80px 0 80px 0;
+	}
+	@media (max-width: $md4+px) {
+		padding: 60px 0 60px 0;
+	}
+
+	&__header-block {
+		margin: 0 0 120px 0;
+		@media (max-width: $md3+px) {
+			margin: 0 0 80px 0;
+		}
+		@media (max-width: $md4+px) {
+			margin: 0 0 60px 0;
+		}
+	}
+	&__body {
+		@include flexbox();
+		margin: 0px -25px;
+		@media (max-width: $md3+px) {
+			display: block;
+		}
+	}
+	&__column {
+		flex: 0 1 50%;
+		padding: 0 20px;
+		margin: 0 40px 0 0;
+		@media (max-width: $md2+px) {
+			padding: 0 25px;
+			margin: 0;
+		}
+	}
+	&__form {
+		text-align: right;
+	}
+	&__content {
+		max-width: 250px;
+		@media (max-width: $md3+px) {
+			max-width: none;
+		}
+	}
+	&__text {
+		font-size: 14px;
+		line-height: 26px;
+		font-weight: 300;
+		color: #000000;
+		margin: 0 0 30px;
+		@media (max-width: $md3+px) {
+			margin: 30px 0 30px 0;
+		}
+	}
+	&__name {
+		font-size: 14px;
+		line-height: 26px;
+		font-weight: 700;
+		color: #000000;
+		margin: 0 0 18px;
+	}
+	&__social {
+		margin: 0 0 12px;
+	}
+	&__email {
+		font-size: 14px;
+		line-height: 26px;
+		font-weight: 300;
+		color: #000000;
+		a {
+			font-weight: 700;
+			color: #000;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+.container {
+}
+.header-block {
+	&__title {
+	}
+}
+.form-contacts {
+	&__body {
+		display: inline-block;
+		width: 100%;
+		max-width: 385px;
+		@media (max-width: $md3+px) {
+			max-width: none;
+			display: block;
+		}
+	}
+	&__row {
+		@include flexbox();
+		margin: 0px -15px 70px -15px;
+	}
+	&__column {
+		flex: 0 1 50%;
+		padding: 0 15px;
+	}
+	&__input {
+	}
+	&__label {
+		text-align: left;
+		font-size: 14px;
+		line-height: 1.2;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: #000000;
+		margin: 0 0 20px;
+	}
+	&__btn {
+		margin: 50px 0 0 0;
+		@media (max-width: $md3+px) {
+			display: block;
+			width: 100%;
+			margin: 30px 0 0 0;
+		}
+	}
+}
+
+.social {
+	&__item {
+		margin: 0 15px 0 0;
+	}
+}
+
+//===================================================================================================================
+
+.footer {
+	background: #3c3c3c;
+	text-align: center;
+	padding: 20px 0 41px 0;
+	&__logo {
+		img {
+			width: 300px;
+		}
+	}
+	&__items {
+	}
+	&__list {
+		@include flexbox();
+		justify-content: center;
+		align-items: center;
+		margin: 30px 0 30px 0;
+		li {
+			margin: 0px 23px 0px 23px;
+			font-size: 14px;
+			line-height: 1.2;
+			font-weight: 400;
+			color: #a4a4a4;
+			a {
+				color: #a4a4a4;
+				transition-duration: 0.3s;
+				&:hover {
+					color: #000;
+				}
+			}
+		}
+	}
+	&__link {
+	}
+	&__info {
+		font-size: 14px;
+		line-height: 1.2;
+		font-weight: 400;
+		color: #6c6c6c;
+	}
+}
+.container {
+}
+//</ОСНОВНОЙ БЛОК>====================================================================================================
+
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ И ГОТОВЫХ КЛАССОВ>====================================================================================================
+@import "_forms";
+@import "_ui";
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ И ГОТОВЫХ КЛАССОВ>===================================================================================================
